@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Needs Survey</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f7fa; padding: 20px; color: #333; }
+.container { max-width: 800px; margin: 0 auto 20px; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  h1 { color: #1a73e8; font-size: 24px; margin-bottom: 8px; text-align: center; }
+.subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
+  label { display: block; margin-top: 18px; margin-bottom: 6px; font-weight: 600; font-size: 14px; }
+  input, select, textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 15px; }
+  input:focus, select:focus, textarea:focus { border-color: #1a73e8; outline: none; }
+.checkbox-group label,.radio-group label { display: flex; align-items: center; font-weight: 400; margin: 8px 0; cursor: pointer; }
+.checkbox-group input,.radio-group input { width: auto; margin-right: 10px; }
+  button { width: 100%; background: #1a73e8; color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; margin-top: 25px; cursor: pointer; }
+  button:hover { background: #1557b0; }
+.success { display: none; background: #e6f4ea; color: #137333; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center; font-weight: 600; }
+.section-title { margin-top: 25px; color: #1a73e8; font-size: 16px; border-bottom: 2px solid #e8f0fe; padding-bottom: 6px; }
+.admin-btn { background: #34a853; margin-top: 10px; }
+.admin-panel { display: none; }
+  table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+  th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+  th { background: #1a73e8; color: white; position: sticky; top: 0; }
+ tr:nth-child(even) { background: #f8f9fa; }
+.stat-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0; }
+.stat { background: #e8f0fe; padding: 12px; border-radius: 8px; text-align: center; }
+.stat-number { font-size: 24px; font-weight: bold; color: #1a73e8; }
+.password-box { background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+.export-btn { background: #fbbc04; color: #333; }
+.top-products { margin-top: 15px; }
+.product-bar { background: #e8f0fe; margin: 5px 0; padding: 8px; border-radius: 5px; display: flex; justify-content: space-between; }
+small { color: #888; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<!-- SURVEY FORM -->
+<div class="container">
+  <h1>Product Needs Survey</h1>
+  <p class="subtitle">Help us bring products/services our community actually needs. 3 mins only.</p>
+
+  <form id="surveyForm">
+    <div class="section-title">1. About You</div>
+    <label>Full Name *</label>
+    <input type="text" id="name" required>
+
+    <label>Age Group *</label>
+    <select id="age" required>
+      <option value="">Select</option>
+      <option>18-24</option><option>25-34</option><option>35-44</option><option>45-54</option><option>55+</option>
+    </select>
+
+    <label>Area/Ward *</label>
+    <input type="text" id="ward" required placeholder="e.g. Umlazi, Chatsworth">
+
+    <div class="section-title">2. Product Needs</div>
+    <label>What products/services are hard to find in your area? * <small>Select top 3</small></label>
+    <div class="checkbox-group" id="products">
+      <label><input type="checkbox" value="Affordable groceries"> Affordable groceries/spaza alternatives</label>
+      <label><input type="checkbox" value="Internet/Data"> Cheap internet + data bundles</label>
+      <label><input type="checkbox" value="Skills training"> Skills training: coding, finance, sewing</label>
+      <label><input type="checkbox" value="Transport"> Affordable transport/taxi app</label>
+      <label><input type="checkbox" value="Repair services"> Phone/laptop/PC repair</label>
+      <label><input type="checkbox" value="Solar/Loadshedding"> Solar products / backup power</label>
+      <label><input type="checkbox" value="Fast food"> Healthy + cheap fast food</label>
+      <label><input type="checkbox" value="Financial services"> Loans, savings groups, financial advice</label>
+      <label><input type="checkbox" value="Childcare"> Daycare / After-school programs</label>
+      <label><input type="checkbox" value="Other"> Other - specify below</label>
+    </div>
+
+    <label>Describe the 1 product/service you need most *</label>
+    <textarea id="mainProduct" rows="3" required placeholder="e.g. A place to buy affordable stationery + printing for students"></textarea>
+
+    <label>How much would you pay monthly for this? *</label>
+    <select id="budget" required>
+      <option value="">Select budget</option>
+      <option>R0 - R50</option>
+      <option>R51 - R150</option>
+      <option>R151 - R300</option>
+      <option>R301 - R500</option>
+      <option>R500+</option>
+    </select>
+
+    <div class="section-title">3. Buying Habits</div>
+    <label>Where do you buy most things now? *</label>
+    <div class="radio-group">
+      <label><input type="radio" name="buy" value="Spaza" required> Local spaza/tuckshop</label>
+      <label><input type="radio" name="buy" value="Mall"> Mall/Shoprite/Checkers</label>
+      <label><input type="radio" name="buy" value="Online"> Online - Takealot, WhatsApp</label>
+      <label><input type="radio" name="buy" value="Street"> Street vendors/hawkers</label>
+    </div>
+
+    <label>WhatsApp Number - for updates on new products</label>
+    <input type="text" id="contact" placeholder="Optional: 071...">
+
+    <button type="submit">Submit Survey</button>
+    <div class="success" id="successMsg">✅ Thank you! Your product request is recorded.</div>
+  </form>
+
+  <button class="admin-btn" onclick="showAdmin()">🔒 Admin: View Participants</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="container admin-panel" id="adminPanel">
+  <h1>📊 Product Needs Dashboard</h1>
+
+  <div class="password-box">
+    <label>Admin Password:</label>
+    <input type="password" id="adminPass" placeholder="Default: admin123">
+    <button onclick="loginAdmin()">Unlock</button>
+  </div>
+
+  <div id="adminData" style="display:none">
+    <div class="stat-box">
+      <div class="stat">
+        <div class="stat-number" id="totalCount">0</div>
+        <div>Total Responses</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="budgetCount">0</div>
+        <div>Can Pay R150+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="wardCount">0</div>
+        <div>Areas Covered</div>
+      </div>
+    </div>
+
+    <h3>Most Requested Products</h3>
+    <div class="top-products" id="topProducts"></div>
+
+    <button class="export-btn" onclick="exportCSV()">📥 Export to Excel</button>
+    <button onclick="clearData()" style="background:#d93025">🗑️ Clear Data</button>
+
+    <h3 style="margin-top:20px">All Participants</h3>
+    <div style="overflow-x:auto">
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>#</th><th>Name</th><th>Age</th><th>Area</th><th>Products Needed</th>
+            <th>Main Product</th><th>Budget</th><th>Buys From</th><th>Contact</th><th>Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASSWORD = "admin123";
+
+// Limit checkboxes to 3
+document.getElementById('products').addEventListener('change', function(e) {
+  const checked = this.querySelectorAll('input:checked');
+  if (checked.length > 3) {
+    e.target.checked = false;
+    alert('Select max 3 products only');
+  }
+});
+
+// Submit
+document.getElementById('surveyForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const products = Array.from(document.querySelectorAll('#products input:checked')).map(cb => cb.value);
+
+  const data = {
+    name: document.getElementById('name').value,
+    age: document.getElementById('age').value,
+    ward: document.getElementById('ward').value,
+    products: products,
+    mainProduct: document.getElementById('mainProduct').value,
+    budget: document.getElementById('budget').value,
+    buy: document.querySelector('input[name="buy"]:checked').value,
+    contact: document.getElementById('contact').value,
+    timestamp: new Date().toLocaleString()
+  };
+
+  let responses = JSON.parse(localStorage.getItem('productSurvey') || '[]');
+  responses.push(data);
+  localStorage.setItem('productSurvey', JSON.stringify(responses));
+
+  document.getElementById('successMsg').style.display = 'block';
+  this.reset();
+  setTimeout(() => document.getElementById('successMsg').style.display = 'none', 4000);
+});
+
+// Admin
+function showAdmin() {
+  document.getElementById('adminPanel').style.display = 'block';
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function loginAdmin() {
+  if (document.getElementById('adminPass').value === ADMIN_PASSWORD) {
+    document.getElementById('adminData').style.display = 'block';
+    loadAdminData();
+  } else {
+    alert('Wrong password! Default: admin123');
+  }
+}
+
+function loadAdminData() {
+  const responses = JSON.parse(localStorage.getItem('productSurvey') || '[]');
+  const tbody = document.querySelector('#dataTable tbody');
+  tbody.innerHTML = '';
+
+  document.getElementById('totalCount').textContent = responses.length;
+  document.getElementById('budgetCount').textContent = responses.filter(r =>
+    ['R151 - R300','R301 - R500','R500+'].includes(r.budget)).length;
+  document.getElementById('wardCount').textContent = [...new Set(responses.map(r => r.ward))].length;
+
+  const productCount = {};
+  responses.forEach(r => r.products.forEach(p => productCount[p] = (productCount[p] || 0) + 1));
+  const sorted = Object.entries(productCount).sort((a,b) => b[1]-a[1]);
+
+  document.getElementById('topProducts').innerHTML = sorted.map(([prod, count]) =>
+    `<div class="product-bar"><span>${prod}</span><span><b>${count}</b> requests</span></div>`
+  ).join('');
+
+  responses.forEach((r, i) => {
+    tbody.innerHTML += `<tr>
+      <td>${i+1}</td><td>${r.name}</td><td>${r.age}</td><td>${r.ward}</td>
+      <td>${r.products.join(', ')}</td><td>${r.mainProduct}</td><td>${r.budget}</td>
+      <td>${r.buy}</td><td>${r.contact}</td><td>${r.timestamp}</td>
+    </tr>`;
+  });
+}
+
+function exportCSV() {
+  const responses = JSON.parse(localStorage.getItem('productSurvey') || '[]');
+  if (responses.length === 0) return alert('No data yet');
+
+  let csv = 'No,Name,Age,Area,Products Needed,Main Product,Budget,Buys From,Contact,Date\n';
+  responses.forEach((r, i) => {
+    csv += `${i+1},"${r.name}","${r.age}","${r.ward}","${r.products.join('; ')}","${r.mainProduct}","${r.budget}","${r.buy}","${r.contact}","${r.timestamp}"\n`;
+  });
+
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'product_needs_survey.csv';
+  a.click();
+}
+
+function clearData() {
+  if (confirm('Delete ALL responses?')) {
+    localStorage.removeItem('productSurvey');
+    loadAdminData();
+  }
+}
+</script>
+
+</body>
+</html>
